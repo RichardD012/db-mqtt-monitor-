@@ -2,7 +2,6 @@
 using MQTTnet;
 using MQTTnet.Protocol;
 
-// See https://aka.ms/new-console-template for more information
 DotNetEnv.Env.Load(".env");
 
 string GetRequiredEnvVar(string name)
@@ -16,8 +15,7 @@ string GetRequiredEnvVar(string name)
     return value;
 }
 
-// Get the database size
-long GetDbSize(string path)
+long GetFileSize(string path)
 {
     try
     {
@@ -52,13 +50,13 @@ using (var mqttClient = mqttFactory.CreateMqttClient())
         .Build();
 
     await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-    
+
     var deviceConfig = new
     {
         timestamp = DateTime.UtcNow,
         db_size_bytes = GetDbSize(dbPath),
     };
-    
+
     await mqttClient.PublishAsync(new MqttApplicationMessageBuilder()
         .WithTopic(mqttTopic)
         .WithPayload(JsonSerializer.Serialize(deviceConfig))
