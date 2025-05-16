@@ -72,8 +72,6 @@ The application publishes JSON messages in the following format:
 
 ## License
 
-[Add your license information here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contributing
-
-[Add contribution guidelines if applicable]
+Copyright (c) 2025 Richard Dyer
